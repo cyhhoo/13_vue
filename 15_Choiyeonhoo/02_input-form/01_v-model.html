@@ -60,6 +60,43 @@
     <label>자기 소개</label>
     <input type="text" size="50" v-model.trim="introduce">
 
+    <!-- 단일 선택 -->
+    <select v-model="selected" @change="check">
+      <option>apple</option>
+      <option>banana</option>
+      <option>orange</option>
+    </select>
+
+    <!-- 다중 선택 -->
+    <select v-model="multi" multiple>
+      <option>apple</option>
+      <option>melon</option>
+      <option>grape</option>
+    </select>
+
+    <h5>{{ selected }}</h5>
+    <h5>{{ multi }}</h5>
+
+    <hr>
+
+    <input id="apple" type="checkbox" value="apple" v-model="fruits"/>
+    <label for="apple">apple</label>
+    <input id="melon" type="checkbox" value="melon" v-model="fruits"/>
+    <label for="melon">melon</label>
+    <input id="grape" type="checkbox" value="grape" v-model="fruits"/>
+    <label for="grape">grape</label>
+
+    <br>
+    <input id="apple1" type="radio" value="apple" v-model="picked"/>
+    <label for="apple1">apple</label>
+    <input id="melon1" type="radio" value="melon" v-model="picked"/>
+    <label for="melon1">melon</label>
+    <input id="grape1" type="radio" value="grape" v-model="picked"/>
+    <label for="grape1">grape</label>
+
+    <h5>{{ fruits.toString() }}</h5>
+    <h5>{{ picked }}</h5>
+
     <hr>
     <div>
       <h3>입력된 값</h3>
@@ -93,8 +130,13 @@
             const address = ref('');
             const age = ref('');
             const introduce = ref("");
+            const selected = ref("apple");
+            const check = () => console.log(selected.value);
+            const multi = ref([]); // 다중 선택 저장
+            const fruits = ref([]);
+            const picked = ref("apple");
 
-            return {name, address,age, introduce}
+            return {name, address,age, introduce, selected, check, multi, fruits, picked}
         }
     }).mount("#step1");
 
